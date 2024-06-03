@@ -1,25 +1,42 @@
+"use client";
 
-
-
-'use client';
-
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import card1 from '../../public/Images/card1.png';
-import card2 from '../../public/Images/card2.png';
-import card3 from '../../public/Images/card3.png';
-import ProductCardCheckout from './products/ProductCardCheckout';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import PropTypes from 'prop-types';
+import Image from "next/image";
+import { useRouter } from "next/router";
+import card1 from "../../public/Images/card1.png";
+import card2 from "../../public/Images/card2.png";
+import card3 from "../../public/Images/card3.png";
+import ProductCardCheckout from "./products/ProductCardCheckout";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
 function OrderPage({ addressData }) {
+  const { cart } = useSelector((state) => state.cart);
 
+  const [subTotal, setSubTotal] = useState(0);
+  const [deliveryCharges, setDeliveryCharges] = useState(12);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    setSubTotal(
+      new Number(
+        cart.reduce((acc, item) => acc + parseInt(item.price), 0)
+      ).toFixed(2)
+    );
+  }, [cart]);
+
+  useEffect(() => {
+    if (subTotal > 0) {
+      setTotal(
+        new Number(parseInt(subTotal) + parseInt(deliveryCharges)).toFixed(2)
+      );
+    }
+  }, [subTotal]);
 
   const onSubmitOrder = () => {
-    
-    alert('Order placed successfully!');
-  
+    alert("Order placed successfully!");
   };
 
   return (
@@ -48,7 +65,7 @@ function OrderPage({ addressData }) {
             <div className="container mt-5">
               <div className="flex flex-wrap">
                 <div
-                  style={{ height: '100%', width: 600 }}
+                  style={{ height: "100%", width: 600 }}
                   className="mt-2 shadow p-3 bg-body-white rounded"
                 >
                   <div>
@@ -85,13 +102,17 @@ function OrderPage({ addressData }) {
                     </div>
                     <hr />
                     <br />
-                    <h6 className="font-sans font-bold">Shipping information</h6>
+                    <h6 className="font-sans font-bold">
+                      Shipping information
+                    </h6>
                     <br />
-                    {addressData.map(card => (
+                    {addressData.map((card) => (
                       <div key={card.id}>
                         <p>Email : {card.Email}</p>
                         <br />
-                        <h6 className="font-sans font-bold">Shipping Address</h6>
+                        <h6 className="font-sans font-bold">
+                          Shipping Address
+                        </h6>
                         <br />
                         <p>Name : {card.Name}</p>
                         <br />
@@ -104,10 +125,14 @@ function OrderPage({ addressData }) {
                     <br />
                     <div className="flex flex-wrap justify-between p-2">
                       <div>
-                        <h5 className="font-sans text-lg font-bold">Subtotal</h5>
+                        <h5 className="font-sans text-lg font-bold">
+                          Subtotal
+                        </h5>
                       </div>
                       <div>
-                        <h6 className="font-sans text-lg font-bold">$0.00</h6>
+                        <h6 className="font-sans text-lg font-bold">
+                          ${subTotal}
+                        </h6>
                       </div>
                     </div>
                     <hr />
@@ -118,7 +143,9 @@ function OrderPage({ addressData }) {
                         </h5>
                       </div>
                       <div>
-                        <h6 className="font-sans text-lg font-bold">$0.00</h6>
+                        <h6 className="font-sans text-lg font-bold">
+                          ${deliveryCharges}
+                        </h6>
                       </div>
                     </div>
                     <hr />
@@ -127,7 +154,9 @@ function OrderPage({ addressData }) {
                         <h5 className="font-sans text-lg font-bold">Total</h5>
                       </div>
                       <div>
-                        <h6 className="font-sans text-lg font-bold">$0.00</h6>
+                        <h6 className="font-sans text-lg font-bold">
+                          ${total}
+                        </h6>
                       </div>
                     </div>
                     <hr />

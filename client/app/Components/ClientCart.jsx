@@ -1,43 +1,62 @@
 // components/ClientCart.js
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../firebase/Firebase';
-import card1 from '../../public/Images/card1.png';
-import card2 from '../../public/Images/card2.png';
-import card3 from '../../public/Images/card3.png';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase/Firebase";
+import card1 from "../../public/Images/card1.png";
+import card2 from "../../public/Images/card2.png";
+import card3 from "../../public/Images/card3.png";
+import { useRouter } from "next/navigation";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ProductCardCart from './products/productCardCart';
+import ProductCardCart from "./products/productCardCart";
+import { useSelector } from "react-redux";
 
 export default function ClientCart() {
+  const { cart } = useSelector((state) => state.cart);
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [country, setCountry] = useState("");
   const [address, setAddress] = useState("");
   const router = useRouter();
+
+  const [subTotal, setSubTotal] = useState(0);
+  const [deliveryCharges, setDeliveryCharges] = useState(12);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    setSubTotal(
+      new Number(
+        cart.reduce((acc, item) => acc + parseInt(item.price), 0)
+      ).toFixed(2)
+    );
+  }, [cart]);
+
+  useEffect(() => {
+    if (subTotal > 0) {
+      setTotal(
+        new Number(parseInt(subTotal) + parseInt(deliveryCharges)).toFixed(2)
+      );
+    }
+  }, [subTotal]);
+
   const onSubmitAddress = async () => {
-
-
-    
     try {
-      const docRef = await addDoc(collection(db, 'Card'), {
+      const docRef = await addDoc(collection(db, "Card"), {
         Email: email,
         Name: name,
         Country: country,
         Address: address,
-        
       });
 
-      alert('Address submitted successfully');
-      console.log('Document written with ID: ', docRef.id);
-      router.push('/order'); // Navigate to the order page
+      alert("Address submitted successfully");
+      console.log("Document written with ID: ", docRef.id);
+      router.push("/order"); // Navigate to the order page
     } catch (e) {
-      console.error('Error adding document: ', e);
+      console.error("Error adding document: ", e);
     }
   };
 
@@ -62,7 +81,7 @@ export default function ClientCart() {
           <div className="container mt-5">
             <div className="flex flex-wrap">
               <div
-                style={{ height: '100%', width: 600 }}
+                style={{ height: "100%", width: 600 }}
                 className="mt-2 shadow p-3 bg-body-white rounded"
               >
                 <div>
@@ -77,7 +96,7 @@ export default function ClientCart() {
                         className="img-fluid mt-3"
                         width={80}
                         src={card1}
-                        alt={'card'}
+                        alt={"card"}
                       />
                     </div>
                     <div>
@@ -85,7 +104,7 @@ export default function ClientCart() {
                         className="img-fluid"
                         width={80}
                         src={card2}
-                        alt={'card'}
+                        alt={"card"}
                       />
                     </div>
                     <div>
@@ -93,7 +112,7 @@ export default function ClientCart() {
                         className="img-fluid mt-2"
                         width={100}
                         src={card3}
-                        alt={'card'}
+                        alt={"card"}
                       />
                     </div>
                   </div>
@@ -140,7 +159,9 @@ export default function ClientCart() {
                       <h5 className="font-sans text-lg font-bold">Subtotal</h5>
                     </div>
                     <div>
-                      <h6 className="font-sans text-lg font-bold">$0.00</h6>
+                      <h6 className="font-sans text-lg font-bold">
+                        ${subTotal}
+                      </h6>
                     </div>
                   </div>
                   <hr />
@@ -151,7 +172,9 @@ export default function ClientCart() {
                       </h5>
                     </div>
                     <div>
-                      <h6 className="font-sans text-lg font-bold">$0.00</h6>
+                      <h6 className="font-sans text-lg font-bold">
+                        ${deliveryCharges}
+                      </h6>
                     </div>
                   </div>
                   <hr />
@@ -160,7 +183,7 @@ export default function ClientCart() {
                       <h5 className="font-sans text-lg font-bold">Total</h5>
                     </div>
                     <div>
-                      <h6 className="font-sans text-lg font-bold">$0.00</h6>
+                      <h6 className="font-sans text-lg font-bold">${total}</h6>
                     </div>
                   </div>
                   <hr />

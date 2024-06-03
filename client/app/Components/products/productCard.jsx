@@ -51,7 +51,7 @@ export default function ProductCard({ item }) {
         <h4 className="text-[15px] ml-2">{item?.description}</h4>
       </div>
       <div className="mt-3">
-        <h4 className="text-[13px] ml-2 font-bold">{item?.price}</h4>
+        <h4 className="text-[13px] ml-2 font-bold">${item?.price}</h4>
        
       </div>
       <div className="mt-2">
