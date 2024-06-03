@@ -1,0 +1,27 @@
+.card {
+    height: 300px; /* Fixed height for card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.card p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+    .card {
+        height: auto; /* Auto height for smaller screens */
+    }
+
+    .card img {
+        height: 150px; /* Adjust image height for smaller screens */
+    }
+
+    .card p {
+        font-size: 12px;
+    }
+}
