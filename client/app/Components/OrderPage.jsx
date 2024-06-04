@@ -47,7 +47,7 @@ function OrderPage({ addressData }) {
         }
       `}</style>
       <div className="container mt-5">
-        <div className="lg:text-5xl md:text-3xl sm:text-2xl font-extrabold tracking-wider bgVideoText">
+        <div className="text-5xl font-extrabold tracking-wider bgVideoText">
           <h1 className="heading text-black font-bold">Pay</h1>
         </div>
         <div className="hr-cart"></div>

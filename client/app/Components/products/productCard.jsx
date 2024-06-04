@@ -42,20 +42,20 @@ export default function ProductCard({ item }) {
         />
       </div>
       <div className="mt-4">
-        <h4 className="text-3xl ml-2 font-bold tracking-wider">
+        <h4 className="text-[25px] ml-2 font-bold tracking-wider">
           {item?.title}
         </h4>
         <br />
       </div>
       <div className="mt-1">
-        <h4 className="text-[15px] ml-2">{item?.description}</h4>
+        <h4 className="text-[14px] ml-2">{item?.description}</h4>
       </div>
       <div className="mt-3">
-        <h4 className="text-[13px] ml-2 font-bold">${item?.price}</h4>
+        <h4 className="text-[12px] ml-2 font-bold">${item?.price}</h4>
        
       </div>
       <div className="mt-2">
-        <h4 className="text-[13px] ml-2 font-bold">{item?.code}</h4>
+        <h4 className="text-[12px] ml-2 font-bold">{item?.code}</h4>
         <br />
       </div>
       <div className="mt-2">

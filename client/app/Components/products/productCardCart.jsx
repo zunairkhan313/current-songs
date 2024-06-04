@@ -29,7 +29,7 @@ export default function ProductCardCart() {
             width={100}
             // height={50}
             src={item.image}
-            alt={"t shirts"}
+            alt={"tools"}
           />
 
           <div className="mt-2">
@@ -44,7 +44,7 @@ export default function ProductCardCart() {
           </div>
           <div className="flex gap-2 mt-3">
             <div className="price mt-4">
-              <h5 className="font-sans font-bold">{item.price}</h5>
+              <h5 className="font-sans font-bold">${item.price}</h5>
             </div>
           
             <div

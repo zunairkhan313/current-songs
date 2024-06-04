@@ -23,8 +23,10 @@ export default function ProductCardCheckout() {
           className="mt-2 shadow p-2 bg-body-white rounded"
         >
           <div className="flex flex-wrap gap-3 justify-around">
-            <img
-              className="rounded h-full"
+            <Image
+
+              className="rounded"
+              height={100}
               width={100}
               src={item.image}
               alt={"logo"}
@@ -33,7 +35,7 @@ export default function ProductCardCheckout() {
             <div className="mt-2">
               <h4 className="font-sans text-lg font-bold">{item.title}</h4>
               <p className=" line-clamp-1">{item.description}</p>
-              <h5 className="font-sans font-boldline-clamp-1">{item.code}</h5>
+              <h5 style={{fontWeight:"bold"}} className="font-sans font-bold line-clamp-1">{item.code}</h5>
             </div>
 
             <div className="flex gap-2">
@@ -42,7 +44,7 @@ export default function ProductCardCheckout() {
             </div>
             <div className="flex gap-2 mt-3">
               <div className="price mt-4">
-                <h5 className="font-sans font-bold">{item.price}</h5>
+                <h5 className="font-sans font-bold">${item.price}</h5>
               </div>
             </div>
           </div>

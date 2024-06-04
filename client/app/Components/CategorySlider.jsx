@@ -44,7 +44,7 @@ export default function CateSliders() {
         pagination={true}
         modules={[EffectCoverflow, Pagination]}
         className="mySwiper"
-        initialSlide={2}
+        initialSlide={4}
       >
         <SwiperSlide>
           <Link href={"/product"}>

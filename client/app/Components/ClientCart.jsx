@@ -43,26 +43,48 @@ export default function ClientCart() {
     }
   }, [subTotal]);
 
-  const onSubmitAddress = async () => {
+  // const onSubmitAddress = async () => {
+  //   try {
+  //     const docRef = await addDoc(collection(db, "Card"), {
+  //       Email: email,
+  //       Name: name,
+  //       Country: country,
+  //       Address: address,
+  //     });
+
+  //     alert("Address submitted successfully");
+  //     console.log("Document written with ID: ", docRef.id);
+  //     router.push("/order"); // Navigate to the order page
+  //   } catch (e) {
+  //     console.error("Error adding document: ", e);
+  //   }
+  // };
+
+  const onSubmitAddress = async (e) => {
+    e.preventDefault();
     try {
-      const docRef = await addDoc(collection(db, "Card"), {
-        Email: email,
-        Name: name,
-        Country: country,
-        Address: address,
+      const res = await fetch(`http://localhost:3000/api/checkout`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ email , name , country , address }),
       });
 
-      alert("Address submitted successfully");
-      console.log("Document written with ID: ", docRef.id);
-      router.push("/order"); // Navigate to the order page
-    } catch (e) {
-      console.error("Error adding document: ", e);
+      if (res.ok) {
+        alert("Address submit successfully");
+        router.push("/order");
+      } else {
+        throw new Error("Failed to submit address");
+      }
+    } catch (error) {
+      console.error("Error creating topic:", error);
     }
   };
 
   return (
     <div className="container mt-5">
-      <div className="lg:text-5xl md:text-3xl sm:text-2xl font-extrabold tracking-wider bgVideoText ">
+      <div className="text-5xl font-extrabold tracking-wider bgVideoText ">
         <h1 className="heading text-black font-bold">Cart</h1>
       </div>
       <div className="hr-cart"></div>
@@ -86,7 +108,7 @@ export default function ClientCart() {
               >
                 <div>
                   <h3 className="text-3xl text-center font-sans font-bold">
-                    Card Details
+                    Shipping Information
                   </h3>
                   <br />
                   <hr />
@@ -117,8 +139,8 @@ export default function ClientCart() {
                     </div>
                   </div>
                   <hr />
-                  <br />
-                  <h6 className="font-sans font-bold">Shipping information</h6>
+                  {/* <br />
+                  <h6 className="font-sans font-bold">Shipping information</h6> */}
                   <br />
                   <p>Email</p>
                   <input
