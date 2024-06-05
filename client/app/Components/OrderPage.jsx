@@ -1,18 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/router";
 import card1 from "../../public/Images/card1.png";
 import card2 from "../../public/Images/card2.png";
 import card3 from "../../public/Images/card3.png";
 import ProductCardCheckout from "./products/ProductCardCheckout";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import TopicsList from "./FetchProducts";
 
-function OrderPage({ addressData }) {
+export default function OrderPage() {
   const { cart } = useSelector((state) => state.cart);
 
   const [subTotal, setSubTotal] = useState(0);
@@ -21,7 +20,7 @@ function OrderPage({ addressData }) {
 
   useEffect(() => {
     setSubTotal(
-      new Number(
+      Number(
         cart.reduce((acc, item) => acc + parseInt(item.price), 0)
       ).toFixed(2)
     );
@@ -30,10 +29,10 @@ function OrderPage({ addressData }) {
   useEffect(() => {
     if (subTotal > 0) {
       setTotal(
-        new Number(parseInt(subTotal) + parseInt(deliveryCharges)).toFixed(2)
+        Number(parseInt(subTotal) + parseInt(deliveryCharges)).toFixed(2)
       );
     }
-  }, [subTotal]);
+  }, [subTotal, deliveryCharges]);
 
   const onSubmitOrder = () => {
     alert("Order placed successfully!");
@@ -74,7 +73,7 @@ function OrderPage({ addressData }) {
                     </h3>
                     <br />
                     <hr />
-                    <div className="flex flex-wrap justify-around gap-2">
+                    {/* <div className="flex flex-wrap justify-around gap-2">
                       <div>
                         <Image
                           className="img-fluid mt-3"
@@ -100,28 +99,14 @@ function OrderPage({ addressData }) {
                         />
                       </div>
                     </div>
-                    <hr />
+                    <hr /> */}
                     <br />
-                    <h6 className="font-sans font-bold">
+                    <br />
+                    <h6 className="text-2xl font-sans font-bold">
                       Shipping information
                     </h6>
                     <br />
-                    {addressData.map((card) => (
-                      <div key={card.id}>
-                        <p>Email : {card.Email}</p>
-                        <br />
-                        <h6 className="font-sans font-bold">
-                          Shipping Address
-                        </h6>
-                        <br />
-                        <p>Name : {card.Name}</p>
-                        <br />
-                        <p>Country : {card.Country}</p>
-                        <br />
-                        <p>Address : {card.Address}</p>
-                        <br />
-                      </div>
-                    ))}
+                    <TopicsList />
                     <br />
                     <div className="flex flex-wrap justify-between p-2">
                       <div>
@@ -178,17 +163,3 @@ function OrderPage({ addressData }) {
     </>
   );
 }
-
-OrderPage.propTypes = {
-  addressData: PropTypes.arrayOf(
-    PropTypes.shape({
-      Email: PropTypes.string,
-      Name: PropTypes.string,
-      Country: PropTypes.string,
-      Address: PropTypes.string,
-      id: PropTypes.string,
-    })
-  ).isRequired,
-};
-
-export default OrderPage;

@@ -112,7 +112,7 @@ export default function ClientCart() {
                   </h3>
                   <br />
                   <hr />
-                  <div className="flex flex-wrap justify-around gap-2">
+                  {/* <div className="flex flex-wrap justify-around gap-2">
                     <div>
                       <Image
                         className="img-fluid mt-3"
@@ -138,9 +138,10 @@ export default function ClientCart() {
                       />
                     </div>
                   </div>
-                  <hr />
+                  <hr /> */}
                   {/* <br />
                   <h6 className="font-sans font-bold">Shipping information</h6> */}
+                  <br />
                   <br />
                   <p>Email</p>
                   <input
