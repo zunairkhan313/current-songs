@@ -3,11 +3,11 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../firebase/Firebase";
-import card1 from "../../public/Images/card1.png";
-import card2 from "../../public/Images/card2.png";
-import card3 from "../../public/Images/card3.png";
+// import { addDoc, collection } from "firebase/firestore";
+// import { db } from "../firebase/Firebase";
+// import card1 from "../../public/Images/card1.png";
+// import card2 from "../../public/Images/card2.png";
+// import card3 from "../../public/Images/card3.png";
 import { useRouter } from "next/navigation";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

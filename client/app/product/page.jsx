@@ -13,7 +13,7 @@ const Product = () => {
   const { data: session } = useSession();
   let addButton;
 
-  if (session?.user?.name === "ADMIN") {
+  if (session?.user?.email === "admin123@gmail.com") {
     addButton = (
       <Link href={"/admin"}>
         <button className="custom-file-upload">

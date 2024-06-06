@@ -8,6 +8,7 @@ import "../Components/hr.css";
 import config from "@/utils/config";
 
 const Admin = () => {
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [img, setImg] = useState("");
@@ -66,6 +67,7 @@ const Admin = () => {
 
       if (res.ok) {
         alert("Product created successfully");
+        router.push("/product")
       } else {
         throw new Error("Failed to create a topic");
       }
@@ -86,6 +88,7 @@ const Admin = () => {
 
       if (res.ok) {
         alert("Category created successfully");
+    
       } else {
         throw new Error("Failed to create a Category");
       }
@@ -102,7 +105,7 @@ const Admin = () => {
         }
       `}</style>
       <div className="container mt-5">
-        <div className="text-5xl font-extrabold tracking-wider bgVideoText">
+        <div className="text-[44px] font-extrabold tracking-wider bgVideoText">
           <h1 className="heading text-black font-bold">Admin Panel</h1>
         </div>
         <div className="hr-admin"></div>

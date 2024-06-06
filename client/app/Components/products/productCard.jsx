@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import RemoveBtn from "../RemoveBtn";
 
 export default function ProductCard({ item }) {
   const dispatch = useDispatch();
@@ -34,7 +35,6 @@ export default function ProductCard({ item }) {
       <div className="flex flex-wrap justify-around">
         <img
           style={{ height: "250px" }}
-          // height={200}
           className="rounded object-cover"
           width={300}
           src={item?.image}
@@ -58,7 +58,10 @@ export default function ProductCard({ item }) {
         <h4 className="text-[12px] ml-2 font-bold">{item?.code}</h4>
         <br />
       </div>
-      <div className="mt-2">
+      <div className="ml-1">
+      <RemoveBtn id={item?._id} />
+      </div>
+      <div className="mt-2" >
         <hr />
       </div>
       <div className="flex flex-wrap justify-around mt-3">
