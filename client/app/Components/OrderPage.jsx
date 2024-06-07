@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import TopicsList from "./FetchProducts";
+import UserAddress from "./FetchProducts";
 
 export default function OrderPage() {
   const { cart } = useSelector((state) => state.cart);
@@ -106,7 +106,7 @@ export default function OrderPage() {
                       Shipping information
                     </h6>
                     <br />
-                    <TopicsList />
+                    <UserAddress />
                     <br />
                     <div className="flex flex-wrap justify-between p-2">
                       <div>

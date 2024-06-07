@@ -2,13 +2,11 @@ import connectMongoDB from "../../../lib/mongodb";
 import Checkout from "../../../models/checkout";
 import { NextResponse } from "next/server";
 
-
-
 export async function POST(request) {
-  const { email , name , country , address } = await request.json();
-  console.log(email , name , country , address);
+  const { email, name, country, address, userId } = await request.json();
+  console.log(email, name, country, address, userId);
   await connectMongoDB();
-  await Checkout.create({ email , name , country , address });
+  await Checkout.create({ email, name, country, address, user_id: userId });
   return NextResponse.json({ message: "Product Created" }, { status: 201 });
 }
 

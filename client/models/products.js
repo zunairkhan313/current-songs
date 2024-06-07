@@ -7,8 +7,11 @@ const productSchema = new Schema(
     image: { type: String },
     price: { type: String },
     code: { type: String },
-  
- 
+    category_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      require: true,
+    },
   },
   {
     timestamps: true,

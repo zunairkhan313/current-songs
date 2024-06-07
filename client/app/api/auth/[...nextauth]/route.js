@@ -1,4 +1,4 @@
-import connectMongoDB  from "../../../../lib/mongodb";
+import connectMongoDB from "../../../../lib/mongodb";
 import User from "../../../../models/user";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -40,6 +40,20 @@ export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+      }
+      return session;
+    },
   },
 };
 

@@ -8,6 +8,7 @@ import data_products from "../Assests/product";
 import ProductCard from "../Components/products/productCard";
 import React, { useState, useEffect } from "react";
 import config from "@/utils/config";
+import { useSearchParams } from "next/navigation";
 
 const Product = () => {
   const { data: session } = useSession();
@@ -23,13 +24,20 @@ const Product = () => {
     );
   }
 
+  const params = useSearchParams();
+  let id = params.get("id");
+
   const [allProducts, setAllProducts] = useState([]);
 
   const handleGetProducts = async () => {
     try {
       fetch(`http://localhost:3000/api/products`)
         .then((res) => res.json())
-        .then((data) => setAllProducts(data.Products || []))
+        .then((data) =>
+          setAllProducts(
+            data.Products.filter((item) => item.category_id === id) || []
+          )
+        )
         .catch((err) => console.log(err));
     } catch (error) {
       console.error("Error creating topic:", error);
@@ -38,7 +46,7 @@ const Product = () => {
 
   useEffect(() => {
     handleGetProducts();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -58,12 +66,15 @@ const Product = () => {
           </div>
           <div className="hr-products"></div>
           <div className="flex flex-wrap justify-around">
-            {allProducts.map((item, i) => (
-              <ProductCard key={i} item={item} />
-            ))}
+            {allProducts?.length > 0 ? (
+              allProducts.map((item, i) => (
+                <ProductCard key={i} item={item} onReload={handleGetProducts} />
+              ))
+            ) : (
+              <div className=" py-5 my-5 ">No products found</div>
+            )}
           </div>
         </div>
-
       </div>
     </>
   );

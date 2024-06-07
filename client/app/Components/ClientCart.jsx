@@ -13,6 +13,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProductCardCart from "./products/productCardCart";
 import { useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
 
 export default function ClientCart() {
   const { cart } = useSelector((state) => state.cart);
@@ -60,6 +61,9 @@ export default function ClientCart() {
   //   }
   // };
 
+  const { data: session } = useSession();
+
+  let userId = session?.user?.id;
   const onSubmitAddress = async (e) => {
     e.preventDefault();
     try {
@@ -68,9 +72,8 @@ export default function ClientCart() {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ email , name , country , address }),
+        body: JSON.stringify({ email, name, country, address, userId }),
       });
-
       if (res.ok) {
         alert("Address submit successfully");
         router.push("/order");

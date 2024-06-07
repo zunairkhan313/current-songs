@@ -13,11 +13,19 @@ cloudinary.config({
 });
 
 export async function POST(request) {
-  const { title, description, img , price , code } = await request.json();
-  console.log(title, description, img , price , code);
+  const { title, description, img, price, code, categoryId } =
+    await request.json();
+  console.log(title, description, img, price, code, categoryId);
   await connectMongoDB();
   const response = await cloudinary.uploader.upload(img[0]);
-  await Product.create({ title, description, image: response.url , price , code });
+  await Product.create({
+    title,
+    description,
+    image: response.url,
+    price,
+    code,
+    category_id: categoryId,
+  });
   return NextResponse.json({ message: "Product Created" }, { status: 201 });
 }
 

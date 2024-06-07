@@ -4,38 +4,32 @@ import { HiOutlineTrash } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-export default function RemoveBtn({ id }) {
-    const { data: session } = useSession();
-    const router = useRouter();
-    
-    const removeTopic = async () => {
-        const confirmed = confirm("Are you sure?");
+export default function RemoveBtn({ id, onReload }) {
+  const { data: session } = useSession();
+  const router = useRouter();
 
-        if (confirmed) {
-            const res = await fetch(`http://localhost:3000/api/products?id=${id}`, {
-                method: "DELETE",
-            });
+  const removeTopic = async () => {
+    const confirmed = confirm("Are you sure?");
 
-            if (res.ok) {
-                router.refresh();
-            }
+    if (confirmed) {
+      const res = await fetch(`http://localhost:3000/api/products?id=${id}`, {
+        method: "DELETE",
+      });
 
-        }
-    };
-    let addButton;
-
-    if (session?.user?.email === "admin123@gmail.com") {
-        addButton = (
-            <button onClick={removeTopic} className="text-[#ff3333]">
-                <HiOutlineTrash size={24} />
-            </button>
-        );
+      if (res.ok) {
+        onReload();
+      }
     }
+  };
+  let addButton;
 
-    return (
-        <>
-            {addButton}
-        </>
-
+  if (session?.user?.email === "admin123@gmail.com") {
+    addButton = (
+      <button onClick={removeTopic} className="text-[#ff3333]">
+        <HiOutlineTrash size={24} />
+      </button>
     );
+  }
+
+  return <>{addButton}</>;
 }
