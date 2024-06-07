@@ -88,6 +88,7 @@ const Admin = () => {
 
       if (res.ok) {
         alert("Category created successfully");
+        router.push("/category")
     
       } else {
         throw new Error("Failed to create a Category");

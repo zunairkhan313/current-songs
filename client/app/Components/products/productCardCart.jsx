@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import DeleteForeverSharpIcon from "@mui/icons-material/DeleteForeverSharp";
+import { HiOutlineTrash } from "react-icons/hi";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "@/redux/slices/cartSlice";
@@ -52,8 +52,8 @@ export default function ProductCardCart() {
               className="deleteicon mt-3"
               onClick={() => removeFromCart(item._id)}
             >
-              <h3 style={{ marginTop: "4px",cursor:"pointer" }}>
-                <DeleteForeverSharpIcon />
+              <h3 style={{ marginTop: "7px",cursor:"pointer" }}>
+                <HiOutlineTrash  size={20}/>
               </h3>
             </div>
           </div>
