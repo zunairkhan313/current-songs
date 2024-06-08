@@ -60,7 +60,7 @@ const Product = () => {
         <div className="container mt-5">
           <div className="flex justify-between">
             <div className="text-5xl font-extrabold tracking-wider bgVideoText ">
-              <h1 className="heading text-black font-bold">Our Products</h1>
+              <h1 className="heading text-black font-bold">Products</h1>
             </div>
             <div className="mt-2">{addButton}</div>
           </div>

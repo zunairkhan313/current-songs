@@ -50,12 +50,16 @@ export default function ProductCard({ item, onReload }) {
       <div className="mt-1">
         <h4 className="text-[14px] ml-2">{item?.description}</h4>
       </div>
+      <div className="flex justify-between">
+
+    
       <div className="mt-3">
-        <h4 className="text-[12px] ml-2 font-bold">${item?.price}</h4>
+        <h4 className="text-[14px] ml-2 font-bold">${item?.price}</h4>
       </div>
-      <div className="mt-2">
+      <div className="mt-3">
         <h4 className="text-[12px] ml-2 font-bold">{item?.code}</h4>
         <br />
+      </div>
       </div>
       <div className="ml-1">
         <RemoveBtn id={item?._id} onReload={onReload} />

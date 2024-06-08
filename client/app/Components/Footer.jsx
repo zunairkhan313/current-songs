@@ -67,12 +67,12 @@ export default function Footer() {
                             <h3 className="text-center font-bold tracking-widest text-2xl text-white">PRODUCTS</h3>
                             <div className="mt-5">
 
-                                <p className="mt-2 text-md text-center hover:text-white text-black"><a href="">Decoration Tools</a></p>
-                                <p className="mt-2 text-md text-center hover:text-white text-black"><a href="">Electronic Tools</a></p>
-                                <p className="mt-2 text-md text-center hover:text-white text-black"><a href="">Scissor</a></p>
-                                <p className="mt-2 text-md text-center hover:text-white text-black"><a href="">Cutting Tools</a></p>
-                                <p className="mt-2 text-md text-center hover:text-white text-black"><a href="">Automotive Tools</a></p>
-                                <p className="mt-2 text-md text-center hover:text-white text-black"><a href="">Pneumatic Tools</a></p>
+                                <p className="mt-2 text-md text-center hover:text-white text-black"><a href="/category">Screwdriver Series</a></p>
+                                <p className="mt-2 text-md text-center hover:text-white text-black"><a href="/category">Pliers Series</a></p>
+                                <p className="mt-2 text-md text-center hover:text-white text-black"><a href="/category">Cutting Tools</a></p>
+                                <p className="mt-2 text-md text-center hover:text-white text-black"><a href="/category">Tools Box</a></p>
+                                <p className="mt-2 text-md text-center hover:text-white text-black"><a href="/category">Drill Machines</a></p>
+                                <p className="mt-2 text-md text-center hover:text-white text-black"><a href="/category">Percussion Tools</a></p>
                             </div>
                         </div>
                     </div>
@@ -104,8 +104,7 @@ export default function Footer() {
                  
                 </div><br />
 
-
-
+ 
             </div>
         </div>
     )

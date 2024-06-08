@@ -87,7 +87,7 @@ export default function NavbarScrollExample() {
                             <li className='hover:cursor-pointer' style={{"marginRight":"40px","color":"white"}}>Home</li>
                             </Link>
                             <Link href={"/category"}>
-                            <li className='hover:cursor-pointer' style={{"marginRight":"40px","color":"white"}}>Categories</li>
+                            <li className='hover:cursor-pointer' style={{"marginRight":"40px","color":"white"}}>Products</li>
                             </Link>
                             <Link href={"/about"}>
                             <li className='hover:cursor-pointer' style={{"marginRight":"40px","color":"white"}}>About Us</li>

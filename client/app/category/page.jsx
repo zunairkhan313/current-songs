@@ -9,7 +9,7 @@ import ProductCard from "../Components/products/productCard";
 import React, { useState, useEffect } from "react";
 import config from "@/utils/config";
 import CategoriesCard from "../Components/categories/CategoriesCard";
-
+import "../Components/hr.css"
 const Category = () => {
   const { data: session } = useSession();
   let addButton;
@@ -54,11 +54,11 @@ const Category = () => {
         <div className="container mt-5">
           <div className="flex justify-between">
             <div className="text-[39px] font-extrabold tracking-wider bgVideoText ">
-              <h1 className="heading text-black font-bold">Our Categories</h1>
+              <h1 className="heading text-black font-bold">Categories</h1>
             </div>
             <div className="mt-2">{addButton}</div>
           </div>
-          <div className="hr-products"></div>
+          <div className="hr-category"></div>
           <div className="flex flex-wrap justify-around">
             {allProducts.map((items, i) => (
               <CategoriesCard key={i} items={items} />

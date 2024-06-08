@@ -63,6 +63,9 @@ const Admin = () => {
   const handleSubmitProduct = async (e) => {
     e.preventDefault();
     try {
+
+
+      // products
       if (!title) {
         alert("please input title");
         return;
@@ -93,6 +96,8 @@ const Admin = () => {
         return;
       }
 
+
+
       const res = await fetch(`http://localhost:3000/api/products`, {
         method: "POST",
         headers: {
@@ -109,7 +114,7 @@ const Admin = () => {
       });
       if (res.ok) {
         alert("Product created successfully");
-        router.push("/product");
+        router.push("/category");
       } else {
         throw new Error("Failed to create a topic");
       }
@@ -120,6 +125,23 @@ const Admin = () => {
 
   const handleSubmitCategory = async (e) => {
     e.preventDefault();
+
+
+    // category
+
+    if (!title1) {
+      alert("please input title");
+      return;
+    }
+
+    if (!description1) {
+      alert("please input description");
+      return;
+    }
+    if (!img1) {
+      alert("please select image");
+      return;
+    }
     try {
       const res = await fetch(`http://localhost:3000/api/category`, {
         method: "POST",

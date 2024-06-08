@@ -44,28 +44,36 @@ export default function ClientCart() {
     }
   }, [subTotal]);
 
-  // const onSubmitAddress = async () => {
-  //   try {
-  //     const docRef = await addDoc(collection(db, "Card"), {
-  //       Email: email,
-  //       Name: name,
-  //       Country: country,
-  //       Address: address,
-  //     });
-
-  //     alert("Address submitted successfully");
-  //     console.log("Document written with ID: ", docRef.id);
-  //     router.push("/order"); // Navigate to the order page
-  //   } catch (e) {
-  //     console.error("Error adding document: ", e);
-  //   }
-  // };
 
   const { data: session } = useSession();
 
   let userId = session?.user?.id;
   const onSubmitAddress = async (e) => {
     e.preventDefault();
+
+    if (!email) {
+      alert("please input email");
+      return;
+    }
+    if (!name) {
+      alert("please input name");
+      return;
+    }
+    if (!country) {
+      alert("please input country");
+      return;
+    }
+    if (!address) {
+      alert("please input address");
+      return;
+    }
+    if (!userId) {
+      alert("please input userId");
+      return;
+    }
+    
+
+
     try {
       const res = await fetch(`http://localhost:3000/api/checkout`, {
         method: "POST",
